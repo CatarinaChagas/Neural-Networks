@@ -1,0 +1,122 @@
+---
+title: "Homework 3 (Random Forests)"
+author: "insert student name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+This assignment is due Monday July 1. Once you have provided all the code and answered all the questions, knit your document to an html file and then save the file as a pdf.
+
+Upload your pdf file that contains your code and answers to these questions to the Homework 4 assignment link in Module 6 in Brightspace.
+
+This assignment is worth 4 points. There are four questions. Each question is worth 1 point each.
+
+Before you begin: Make sure you install the caret package.
+
+#Scenario and Data Description
+
+You are working at consumer advocacy agency, Equitable Ernest. Equitable Ernest is interested in providing a service that allows an individual to estimate their own credit score (a continuous measure used by banks and insurance companies that determines whether or not to loan money or to provide insurance premium quotes). 
+
+In the workspace folder of this project there is an Excel file name creditscore.csv that contains information on several thousand individuals. The features in this data set are:
+
+BureauInquiries - number of inquiries about an individuals credit
+
+CreditUsage - percent of an individual's credit used
+
+TotalCredit - total amount of credit available to an individual
+
+CollectedReports - number of times an unpaid bill was reported to a collection agency
+
+MissedPayments - number of missed payments
+
+HomeOwner - 1 if individual is homeowner, 0 if not
+
+CreditAge - average age of individual's credit
+
+TimeOnJob - how long the individual has been continuously employed (in years)
+
+The CreditScore variable is the target variable. CreditScore is a number between 300 and 850 with larger numbers representing increased credit worthiness.
+
+# Import the data
+
+1. Create an R data frame named creditscore by converting the creditscore.csv file into a R data frame.
+
+```{r}
+
+#delete this and insert your code here
+
+```
+
+# Build a Neural Network Model
+
+2. Using 5-fold cross validation build a neural network model to predict individual's credit scores using the creditscore data frame.
+
+Follow the steps in the code chunk to complete this task.
+
+```{r, results='hide'}
+library(caret)
+
+
+#Step 1
+# set random number seed for bootstrap samples
+# different seed values will generate different partitions of the data
+#using the same seed will generate the same model each time code is run
+set.seed(1234)
+
+#Step 2
+#specify the cross validation method
+#create an R object named cv_method that will be used to specify 5-fold cross valdiation
+
+#delete this and insert your code here
+
+#Step 3
+# create a grid of parameter values to assess in k-fold cross-validation
+# for neural network, two parameters are: size and decay
+# size = number of neurons in the single hidden layer
+# decay = penalty parameter to avoid overfitting
+# Use size = 5, 10, 15, 20 and decay = 0.1, 0.2, 0.3. 0.4, 0.5
+grid <-expand.grid(.size = seq(5,20,5), .decay = seq(0.1,0.5,0.1)) 
+grid
+
+#Step 4
+#Build a neural network to predict an individual's credit score using a random forest
+#use 5-fold cross validation
+#use the grid object created above for the tuneGrid argument (just like we did in class) for the size and decay hyperparmeters
+#Use a linear activation function
+#name the R object that will hold the results of the random forest Credit_Neural
+
+#Note: The code could run for several minutes.
+
+
+#delete this and insert your code here
+
+
+
+
+```
+
+3. a. What is the neural network architecture that is selected for this neural network model? That is, how many neurons are in the hidden layer for this neural network?
+
+<insert your response here>
+
+
+b. What is the value of th RMSE for the selected neural network model? Round to four decimal places.
+
+<insert your response here>
+
+
+4a. In the workspace folder there is a .csv file named new_individual_creditscore. This is an individual with certain values of the features for BureauInquiries, CreditUsage, etc... This individual's record did not participate in the creation of the neural network model from #2.
+
+Apply the nerual network model built from #2 to predict the credit score of this new individual's record. Round the credit score to 0 decimal places.
+
+
+```{r}
+#delete this and insert your data here
+
+
+```
+
+
+b. What is the predicted credit score for the individual that is in the new_individual_creditscore file?
+
+<insert your response here>
